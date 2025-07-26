@@ -1,0 +1,19 @@
+Crop,Rainfall_Min_mm,Rainfall_Max_mm,pH_Min,pH_Max,Soil_Type
+Maize,600,1200,5.5,7.0,Loamy
+Beans,500,1000,6.0,6.8,Sandy-Loam
+Millet,300,800,5.0,6.5,Sandy
+Sorghum,400,800,5.5,8.0,Sandy-Loam
+Rice,1200,2000,5.0,6.5,Clayey
+Cassava,500,1000,5.5,7.5,Sandy-Loam
+Sweet Potato,750,1250,5.5,6.5,Loamy
+Groundnuts,500,1000,5.3,6.5,Sandy
+Green grams,350,600,6.0,7.5,Sandy-Loam
+Wheat,500,900,6.0,7.0,Loam-Clay
+Sugarcane,1500,2500,5.0,6.5,Loam-Clay
+Tea,1200,1400,4.5,5.5,Well-drained Loamy
+Coffee,1000,2000,5.0,6.0,Volcanic Loam
+Banana,1000,2500,5.5,7.0,Loam
+Tomato,600,800,6.0,6.8,Loamy
+Onion,500,700,6.0,6.8,Sandy-Loam
+Cabbage,600,1200,6.0,6.5,Loam
+Spinach,700,1000,6.0,7.0,Loam
