@@ -30,7 +30,7 @@ Our model assists farmers and decision-makers with key information, making agric
 
 ### Overview
 
-This modeling pipeline classifies areas in Kenya as **suitable** or **unsuitable** for crop cultivation using geospatial and environmental features. The objective is to support **climate-smart agriculture** and optimized landuse planning through data-driven recommendations
+This modeling pipeline classifies areas in Kenya as **suitable** or **unsuitable** for crop cultivation using geospatial and environmental features. The objective is to support **climate-smart agriculture** and optimized land use planning through data-driven recommendations
 
 ---
 
@@ -59,7 +59,7 @@ This modeling pipeline classifies areas in Kenya as **suitable** or **unsuitable
 - Extracted raster features per pixel across Kenya  
 - Simulated rainfall and pH values to mimic realistic environmental conditions  
 - Generated binary labels: `1 = Suitable`, `0 = Unsuitable`  
-- Addressed class imbalance using sampling and class weights  
+- Addressed class imbalance using  class weights  
 - Encoded categorical variables and handled missing values  
 
 ---
@@ -68,9 +68,9 @@ This modeling pipeline classifies areas in Kenya as **suitable** or **unsuitable
 
 | Model                  | Description |
 |------------------------|-------------|
-| **Random Forest ** | Bagged ensemble of decision trees. Performed well but had slightly lower precision |
-| **XGBoost **        | Gradient boosting with regularization. **Best overall performer** by F1 score |
-| **CNN **     | Convolutional neural network on NDVI patches. Limited by tiny dataset and imbalance |
+| **Random Forest** | Bagged ensemble of decision trees. Performed well but had slightly lower precision |
+| **XGBoost**        | Gradient boosting with regularization. **Best overall performer** by F1 score |
+| **CNN**     | Convolutional neural network on NDVI patches. Limited by tiny dataset and imbalance |
 
 ---
 
@@ -83,6 +83,7 @@ This modeling pipeline classifies areas in Kenya as **suitable** or **unsuitable
 - Its ability to balance **precision** and **recall**
 - Robustness to **class imbalance**
 - Relevance to real-world agricultural impact  since missing suitable land is costlier
+  
 | Model             | Accuracy | F1 Score (Suitable) | Recall (Suitable) | Precision (Suitable) | Notes                                                |
 |------------------|----------|---------------------|-------------------|-----------------------|------------------------------------------------------|
 | **XGBoost**       | 0.90     | **0.89**            | 0.88              | 0.90                  | 🏆 Best performer; strong balance of precision & recall |
@@ -116,13 +117,14 @@ The XGBoost classifier is ideal for real-world use by:
 - Researchers building next-gen geospatial models 
 
 Hence it's the top candidate for **real-world deployment** to assist farmers, policymakers and agricultural investors
+
 This pipeline lays a scalable foundation for AI-powered agricultural intelligence in Kenya and beyond
 
 ---
 
 ###  Limitations  
 - Binary classification simplifies crop suitability, which is often a gradient  
-- CNNs were underpowered due to limited dataset size and imbalance  
+- CNN model was  underpowered due to limited dataset size and imbalance  
 - Thresholds were fixed while in real life, crops can adapt to a wider range of conditions  
 
 ---
