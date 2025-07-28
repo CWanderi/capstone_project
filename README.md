@@ -96,6 +96,8 @@ This modeling pipeline classifies areas in Kenya as **suitable** or **unsuitable
 ## Key Insights
 
 - **XGBoost** outperformed other models in terms of F1 score and offered a strong balance between precision and recall
+  <img width="380" height="278" alt="image" src="https://github.com/user-attachments/assets/1e193a9d-881e-4500-b1a1-06857aacb2d7" />
+
 - **Random Forest** was a strong baseline but slightly less balanced
 - **CNN** showed potential for spatial learning but was limited by data size and class imbalance
 - **Simulated rainfall and pH** along with **soil texture** were key features influencing suitability
