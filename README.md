@@ -136,6 +136,17 @@ This pipeline lays a scalable foundation for AI-powered agricultural intelligenc
 ###  Recommendations  
 - Expand to multi-class classification to model suitability for different crop types  
 - Validate predictions with field data and collaborate with local agronomists  
-- Scale the CNN pipeline with data augmentation and more geolocated training samples  
+- Scale the CNN pipeline with data augmentation and more geolocated training samples
+
+#### Sources:
+https://www.yieldgap.org/web/guest/coverage-and-data-download
+
+http://www.earthstat.org/
+
+https://power.larc.nasa.gov/
+
+https://gaez.fao.org/pages/agromaps
+
+[https://www.fao.org/home/en](https://www.fao.org/faostat/en/#data)
 
 
