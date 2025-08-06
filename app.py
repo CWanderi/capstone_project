@@ -1,52 +1,47 @@
 import streamlit as st
-import numpy as np
 import pandas as pd
-import joblib
 
-# Load trained model
-model = joblib.load('xgboost_model.pkl')
+# Set page config
+st.set_page_config(page_title="Agricultural Suitability Predictor")
 
-# Title
+# Load data
+@st.cache_data
+def load_data():
+    return pd.read_csv("merged_data.csv")
+
+df = load_data()
+
 st.title("🌾 Agricultural Suitability Predictor")
 
-st.markdown("Fill in the following parameters to predict land suitability:")
+# Input crop and county
+crop_list = sorted(df["crop_name"].unique())
+county_list = sorted(df["NAME2_"].unique())
 
-# --- Inputs ---
-ndvi = st.slider("NDVI (Normalized Difference Vegetation Index)", 0.0, 1.0, 0.5, 0.01)
+col1, col2 = st.columns(2)
+with col1:
+    selected_crop = st.selectbox("Select Crop", crop_list)
+with col2:
+    selected_county = st.selectbox("Select County", county_list)
 
-degradation = st.selectbox("Degradation Level", ["None", "Low", "Moderate", "Severe"])
+# Filter
+result = df[(df["crop_name"] == selected_crop) & (df["NAME2_"] == selected_county)]
 
-soil_texture = st.selectbox("Soil Texture", ["Sandy", "Loamy", "Clay", "Silty", "Other"])
+st.markdown("### 🌍 Results")
 
-crop_name = st.selectbox("Crop Name", ["Maize", "Wheat", "Rice", "Sorghum", "Beans", "Other"])
+if not result.empty:
+    row = result.iloc[0]
+    st.write(f"**County:** {selected_county}")
+    st.write(f"**Crop:** {selected_crop}")
+    st.write(f"**Mean Rainfall:** {row['rainfall']:.2f} mm")
+    st.write(f"**Mean pH:** {row['pH']:.2f}")
 
-rainfall = st.number_input("Rainfall (mm/year)", min_value=0.0, max_value=3000.0, value=1000.0)
-
-pH = st.number_input("Soil pH", min_value=3.0, max_value=10.0, value=6.5)
-
-# NOTE: You can ignore soil_texture_name if it's redundant with soil_texture
-
-# Submit button
-if st.button("Predict Suitability"):
-    # Encode categorical values manually if necessary
-    degradation_dict = {"None": 0, "Low": 1, "Moderate": 2, "Severe": 3}
-    soil_texture_dict = {"Sandy": 0, "Loamy": 1, "Clay": 2, "Silty": 3, "Other": 4}
-    crop_name_dict = {"Maize": 0, "Wheat": 1, "Rice": 2, "Sorghum": 3, "Beans": 4, "Other": 5}
-
-    # Create feature array
-    input_data = np.array([[ndvi,
-                            degradation_dict[degradation],
-                            soil_texture_dict[soil_texture],
-                            crop_name_dict[crop_name],
-                            soil_texture_dict[soil_texture],  # reusing soil_texture as soil_texture_name
-                            rainfall,
-                            pH]])
-
-    # Prediction
-    prediction = model.predict(input_data)[0]
-
-    # Display
-    if prediction == 1:
-        st.success("✅ The land is **suitable** for agriculture.")
+    if row['suitable'] == 1:
+        st.success("✅ This crop is **suitable** for the selected county.")
     else:
-        st.warning("❌ The land is **not suitable** for agriculture.")
+        st.error("❌ This crop is **not suitable** for the selected county.")
+else:
+    st.warning("No data found for the selected crop and county.")
+
+# Optional: Show raw data
+with st.expander("🔍 View Raw Data"):
+    st.dataframe(df[['crop_name', 'NAME2_', 'rainfall', 'pH', 'suitable']])
